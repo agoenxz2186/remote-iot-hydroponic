@@ -1,0 +1,16 @@
+version: '3.5'
+
+networks:
+  serverbsi:
+    name: projects1_projectsinet
+    external: true
+
+
+services:
+  sensor_mqtt:
+    container_name: "sensor-mqtt"
+    restart: always
+    image: projectsi/sensormqtt:latest
+    networks:
+      serverbsi:
+        ipv4_address: 192.168.195.37

@@ -1,0 +1,34 @@
+name: Menjalankan API Sensor MQTT
+
+on:
+  push:
+    branches:
+      - development  # Ganti dengan nama branch yang sesuai
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Matikan service container
+        run: |
+          set +e
+          docker compose -f docker-compose.yaml down
+          set -e
+
+      - name: Hapus image
+        run: |
+          set +e
+          docker image rm projectsi/sensormqtt:latest
+          set -e
+
+      - name: Buat image api projectsi/sensormqtt
+        run: |
+          docker build -t projectsi/sensormqtt:latest .
+
+      - name: Jalankan service sensormqtt
+        run: |
+          docker compose up -d

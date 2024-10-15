@@ -1,0 +1,8 @@
+### post data
+POST http://localhost:8000/sensor
+Content-Type: application/json
+
+{
+  "name": "Keran",
+  "value": "ON"
+}
