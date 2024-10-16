@@ -54,8 +54,8 @@ func (r SensorModel) Collection() *mongo.Collection {
 func (r SensorModel) Insert(data SensorModel) (*mongo.InsertOneResult, error) {
 
 	if data.ID.IsZero() {
-		r.ID = primitive.NewObjectID()
-		r.Date = time.Now().Format("2006-01-02 15:04:05")
+		data.ID = primitive.NewObjectID()
+		data.Date = time.Now().Format("2006-01-02 15:04:05")
 	}
 	return r.Collection().InsertOne(r.ctx(), data)
 }

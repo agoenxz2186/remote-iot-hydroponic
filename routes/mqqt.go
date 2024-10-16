@@ -8,6 +8,7 @@ import (
 
 func MqqtRoutes(client mqtt.Client) {
 	ctrl := controllers.NewMQQTController()
+	println("subscribe sensor")
 	if token := client.Subscribe("sensor", 2, ctrl.Sensor); token.Wait() && token.Error() != nil {
 		fmt.Println("Subscribe error sensor, ", token.Error())
 	}

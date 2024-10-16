@@ -17,7 +17,7 @@ func (receiver *MQQTController) Sensor(client mqtt.Client, msg mqtt.Message) {
 	payload := string(msg.Payload())
 	var out models.SensorModel
 	json.Unmarshal([]byte(payload), &out)
-
+	println("sensor incoming : ", string(msg.Payload()))
 	_, err := models.SensorModel{}.Insert(out)
 	if err != nil {
 		println("Insert error : ", err.Error())
