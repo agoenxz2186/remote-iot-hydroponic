@@ -11,6 +11,8 @@ services:
     container_name: "sensor-mqtt"
     restart: always
     image: projectsi/sensormqtt:latest
+    environment:
+      - TZ=Asia/Jakarta
     networks:
       serverbsi:
         ipv4_address: 192.168.195.37
